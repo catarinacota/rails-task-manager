@@ -3,16 +3,28 @@
 <% @tasks.each do |task| %>
   <div>
     <% if task.completed %>
-      <p><i class="far fa-check-square"></i> <%= link_to task.title, task_path(task) %></p>
+      <p>
+        <i class="far fa-check-square"></i> <%= link_to task.title, task_path(task) %>
+        <%= link_to task_path(task), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </p>
     <% else %>
-      <p><i class="far fa-square"></i> <%= link_to task.title, task_path(task) %></p>
-    <% end  %>
+      <p>
+        <i class="far fa-square"></i> <%= link_to task.title, task_path(task) %>
+        <%= link_to task_path(task), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      </p>
+    <% end %>
   </div>
 <% end %>
 
 <%= link_to tasks_new_path do %>
   <i class="fas fa-plus"></i> Add a new task
 <% end %>
+
+
 
 
 
